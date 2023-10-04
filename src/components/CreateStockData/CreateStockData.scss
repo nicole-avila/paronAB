@@ -1,0 +1,26 @@
+@import "../../sass/_colors.scss";
+@import "../../sass/_mixins.scss";
+
+.create {
+  background-color: rgb(253, 201, 227);
+
+  &__form {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  & input {
+    height: 1.5rem;
+    border: 1px solid $night;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  & button {
+    margin: 1rem auto;
+    width: 200px;
+    border: 1px solid $night;
+  }
+}
