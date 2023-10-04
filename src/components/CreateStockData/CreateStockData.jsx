@@ -5,7 +5,7 @@ import { db, auth } from "../../firebase-config";
 
 export default function CreateStockData() {
   const [wearehouse, setWearehouse] = useState("");
-  const [product, setProduct] = useState("");
+  const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState("");
   const stockListCollectionRef = collection(db, "stockList");
 
@@ -46,6 +46,7 @@ export default function CreateStockData() {
         <input
           type="text"
           placeholder="add product.."
+          id="product"
           onChange={(e) => setProduct(e.target.value)}
         />
 
