@@ -41,18 +41,18 @@ function App() {
     <div className="App">
       <Router>
         <nav>
-          <Link to="/">Home</Link>
+          <Link to="/paronAB">Home</Link>
           {authUser ? (
             <div>
               <button onClick={handelSignOut}>Logga ut</button>
             </div>
           ) : (
-            <Link to="/auth">Logga in</Link>
+            <Link to="/paronAB/auth">Logga in</Link>
           )}
         </nav>
         <Routes>
-          <Route path="/" element={<Home authUser={authUser} />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/paronAB" element={<Home authUser={authUser} />} />
+          <Route path="/paronAB/auth" element={<Auth />} />
         </Routes>
       </Router>
     </div>

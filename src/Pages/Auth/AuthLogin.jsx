@@ -13,7 +13,7 @@ export default function AuthLogin() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
-        navigate("/");
+        navigate("/paronAB");
       })
       .catch((error) => {
         console.log(error);
