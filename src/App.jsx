@@ -41,9 +41,9 @@ function App() {
     <div className="App">
       <Router>
         <nav>
+          <Link to="/">Home</Link>
           {authUser ? (
             <div>
-              <Link to="/">Home</Link>
               <button onClick={handelSignOut}>Logga ut</button>
             </div>
           ) : (
@@ -51,7 +51,7 @@ function App() {
           )}
         </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home authUser={authUser} />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </Router>

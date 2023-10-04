@@ -1,9 +1,16 @@
-export default function Home() {
+import ReadStockOverview from "../../components/ReadStockOverview/ReadStockOverview";
+
+export default function Home({ authUser }) {
   return (
-    <div>
-      <h1>home</h1>
-      <h1>home</h1>
-      <h1>home</h1>
+    <div className="home">
+      {authUser ? (
+        <div>
+          <p className="home__auth-user">{`${authUser.email}`}</p>
+          <ReadStockOverview />
+        </div>
+      ) : (
+        <h1>Päron Ab</h1>
+      )}
     </div>
   );
 }
