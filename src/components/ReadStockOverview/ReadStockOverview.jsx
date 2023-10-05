@@ -30,8 +30,7 @@ export default function ReadStockOverview() {
 
   return (
     <div className="stock">
-      <CreateStockData />
-      <h1>Read</h1>
+      <h1 className="stock__title">Lagersaldo</h1>
       {Array.isArray(readStockList) &&
         readStockList.map((stock, index) => (
           <div className="stock__container">
@@ -40,14 +39,17 @@ export default function ReadStockOverview() {
               <div className="stock__products-container">
                 {stock.products.map((product, index) => (
                   <div key={index} className="stock__product">
-                    <p>{product.productName}</p>
-                    <p>{product.quantity}</p>
+                    <p className="stock__product-name">{product.productName}</p>
+                    <p className="stock__product-quantity">
+                      {product.quantity} st
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         ))}
+      <CreateStockData />
     </div>
   );
 }

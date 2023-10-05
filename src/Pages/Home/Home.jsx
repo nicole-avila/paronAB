@@ -1,3 +1,4 @@
+import "./Home.scss";
 import ReadStockOverview from "../../components/ReadStockOverview/ReadStockOverview";
 
 export default function Home({ authUser }) {
