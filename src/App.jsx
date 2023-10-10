@@ -7,6 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import Home from "./Pages/Home/Home";
 import Auth from "./Pages/Auth/AuthLogin";
+import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 
 /*
 Har använt mig utav useState och useEffekt hook för att uppdatera och hantera 
@@ -44,6 +45,7 @@ function App() {
           <Link to="/paronAB">Home</Link>
           {authUser ? (
             <div>
+              <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
               <button onClick={handelSignOut}>Logga ut</button>
             </div>
           ) : (
@@ -53,6 +55,7 @@ function App() {
         <Routes>
           <Route path="/paronAB" element={<Home authUser={authUser} />} />
           <Route path="/paronAB/auth" element={<Auth />} />
+          <Route path="/paronAB/update-stock" element={<UpdateStock />} />
         </Routes>
       </Router>
     </div>

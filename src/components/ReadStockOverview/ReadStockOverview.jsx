@@ -1,7 +1,4 @@
 import "./ReadStockOverview.scss";
-import { useNavigate } from "react-router-dom";
-import UpdateStockBalance from "../UpdateStockBalance/UpdateStockBalance";
-import Wearehouse from "../Wearehouse/Wearehouse";
 import CreateStockData from "../CreateStockData/CreateStockData";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
@@ -33,9 +30,9 @@ export default function ReadStockOverview() {
       <h1 className="stock__title">Lagersaldo</h1>
       {Array.isArray(readStockList) &&
         readStockList.map((stock, index) => (
-          <div className="stock__container">
-            <div key={index}>
-              <h1 className="stock__wearehouse-title">{stock.wearehouse}</h1>
+          <div key={index} className="stock__container">
+            <div>
+              <h1 className="stock__warehouse-title">{stock.warehouse}</h1>
               <div className="stock__products-container">
                 {stock.products.map((product, index) => (
                   <div key={index} className="stock__product">
