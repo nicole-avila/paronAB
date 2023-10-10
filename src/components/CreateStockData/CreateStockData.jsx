@@ -4,7 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../firebase-config";
 
 export default function CreateStockData() {
-  const [wearehouse, setWearehouse] = useState("");
+  const [warehouse, setWarehouse] = useState("");
   const [products, setProducts] = useState([{ productName: "", quantity: "" }]);
 
   const stockListCollectionRef = collection(db, "stockList");
@@ -21,14 +21,14 @@ export default function CreateStockData() {
 
   async function handleForm(e) {
     e.preventDefault();
-    if (wearehouse && products.length > 0) {
+    if (warehouse && products.length > 0) {
       try {
         await addDoc(stockListCollectionRef, {
-          wearehouse,
+          warehouse: warehouse,
           products,
           author: { email: auth.currentUser.email, id: auth.currentUser.uid },
         });
-        setWearehouse("");
+        setWarehouse("");
         setProducts([{ productName: "", quantity: "" }]); // [{ productName: "", quantity: "" }] ??
 
         console.log("produkten är tilllagd");
@@ -72,7 +72,7 @@ export default function CreateStockData() {
       const updateProducts = [...prevProducts];
       updateProducts[index] = {
         ...updateProducts[index],
-        [name]: value,
+        [name]: name === "quantity" ? Number(value) : value,
       };
       return updateProducts;
     });
@@ -82,12 +82,12 @@ export default function CreateStockData() {
     <div className="create">
       <h1>Create</h1>
       <form onSubmit={handleForm} className="create__form">
-        <label htmlFor="wearehouse">Lägg till ett Färdigvarulager</label>
+        <label htmlFor="warehouse">Lägg till ett Färdigvarulager</label>
         <input
           type="text"
-          placeholder="add new wearehouse.."
-          id="wearehouse"
-          onChange={(e) => setWearehouse(e.target.value)}
+          placeholder="add new warehouse.."
+          id="warehouse"
+          onChange={(e) => setWarehouse(e.target.value)}
         />
 
         {products.map((product, index) => (
