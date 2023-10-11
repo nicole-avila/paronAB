@@ -43,10 +43,10 @@
 }
 
 @mixin input {
-  width: 3rem;
+  width: 12rem;
   height: 2rem;
-  border: 11px;
-  border-radius: 1px solid $night;
+  border: 1px solid $night;
+  border-radius: 4px;
 }
 
 @mixin HeroTitle {
