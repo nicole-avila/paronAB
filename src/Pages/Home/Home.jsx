@@ -1,13 +1,17 @@
 import "./Home.scss";
 import pear from "../../assets/pear-image.png";
 import ReadStockOverview from "../../components/ReadStockOverview/ReadStockOverview";
+import profileIcon from "../../assets/profile-icon.svg";
 
 export default function Home({ authUser }) {
   return (
     <div className="home">
       {authUser ? (
         <div>
-          <p className="home__auth-user">{`${authUser.email}`}</p>
+          <div className="home__profile">
+            <img src={profileIcon} alt="" />
+            <p className="home__auth-user">{`${authUser.email}`}</p>
+          </div>
           <ReadStockOverview />
         </div>
       ) : (

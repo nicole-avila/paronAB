@@ -4,7 +4,8 @@ import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import "./Auth.scss";
 import profileIcon from "../../assets/profile-icon.svg";
-import AuthSignUp from "./AuthSignUp";
+import AuthSignUp from "../AuthSignUp/AuthSignUp";
+import TopBar from "../../components/TopBar/TopBar";
 
 export default function AuthLogin() {
   const [email, setEmail] = useState("");

@@ -10,16 +10,9 @@ import Auth from "./Pages/Auth/AuthLogin";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 import TopBar from "./components/TopBar/TopBar";
 
-/*
-Har använt mig utav useState och useEffekt hook för att uppdatera och hantera 
-autentiseringsstatusen för användaren. 
-Så om användaren är inloggad, uppdaterar authUser till användarobjektet OM anvädnaren INTE är 
-inloggad, uppdaterar authUser till NULL, skickar iväg det state till Home för en bekräftelse att man är inloggad
-på sin mail. Sedan OM authUser är sann (alltså inloggad) så visa en button för att 'logga ut' annars visa en länk till Logga in sidan. 
-*/
-
 function App() {
   const [authUser, setAuthUser] = useState(null);
+  const [topbarVisibility, setTopbarVisibility] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -39,6 +32,14 @@ function App() {
       .catch((error) => console.log(error));
   }
 
+  function handleLoginClick() {
+    setTopbarVisibility(true);
+  }
+
+  // function handleTopBarVisisbility() {
+  //   setTopbarVisibility(false);
+  // }
+
   return (
     <div className="app">
       <Router>
@@ -51,8 +52,15 @@ function App() {
             </div>
           ) : (
             <div className="app__topbar">
-              <TopBar />
-              <Link to="/paronAB/auth">Logga in</Link>
+              {topbarVisibility && <TopBar />}
+
+              <Link
+                to="/paronAB/auth"
+                onClick={handleLoginClick}
+                className="app__topbar-login"
+              >
+                Logga in
+              </Link>
             </div>
           )}
         </nav>
@@ -67,3 +75,11 @@ function App() {
 }
 
 export default App;
+
+/*
+Har använt mig utav useState och useEffekt hook för att uppdatera och hantera 
+autentiseringsstatusen för användaren. 
+Så om användaren är inloggad, uppdaterar authUser till användarobjektet OM anvädnaren INTE är 
+inloggad, uppdaterar authUser till NULL, skickar iväg det state till Home för en bekräftelse att man är inloggad
+på sin mail. Sedan OM authUser är sann (alltså inloggad) så visa en button för att 'logga ut' annars visa en länk till Logga in sidan. 
+*/
