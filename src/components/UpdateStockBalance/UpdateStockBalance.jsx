@@ -1,4 +1,5 @@
 import "./UpdateStockBalance.scss";
+import UpdateStockForm from "./UpdateStockForm";
 import { useState, useEffect } from "react";
 import { db } from "../../firebase-config";
 import {
@@ -13,6 +14,7 @@ export default function UpdateStockBalance() {
   const [warehouse, setWarehouse] = useState("");
   const [products, setProducts] = useState({ productName: "", quantity: "" });
   const [stocks, setStocks] = useState([]);
+  const [message, setMessage] = useState("");
 
   const stockListCollectionRef = collection(db, "stockList");
 
@@ -59,6 +61,10 @@ export default function UpdateStockBalance() {
           };
 
           await updateDoc(stockListDoc, updatedData);
+
+          setWarehouse("");
+          setProducts({ productName: "", quantity: "" });
+          setMessage("Lyckad Uppdatering!");
           console.log("antalet i podukten är uppdaterad");
         }
       } catch (error) {
@@ -69,71 +75,34 @@ export default function UpdateStockBalance() {
 
   return (
     <div className="update">
-      <h1>Uppdatera Lagersaldo</h1>
-      <div className="update__form">
-        <label htmlFor="warehouse">Lägg till varulagret</label>
-        <select
-          id="warehouse"
-          value={warehouse}
-          onChange={(e) => setWarehouse(e.target.value)}
+      <h1 className="update__title">Uppdatera Lagersaldo</h1>
+      <UpdateStockForm
+        warehouse={warehouse}
+        setWarehouse={setWarehouse}
+        products={products}
+        setProducts={setProducts}
+        stocks={stocks}
+        setMessage={setMessage}
+      />
+      <div className="update__btn-container">
+        <button
+          className="update__add-btn"
+          onClick={() => {
+            const selectedStock = stocks.find(
+              (stock) => stock.warehouse === warehouse
+            );
+            handleUpdate(
+              selectedStock.id,
+              products.productName,
+              products.quantity
+            );
+          }}
         >
-          <option value="#">välj varulager</option>
-          {stocks.map((stock, index) => (
-            <option key={index} value={stock.warehouse}>
-              {stock.warehouse}
-            </option>
-          ))}
-        </select>
-
-        <label htmlFor="product">Lägg till produkt</label>
-        <select
-          id="product"
-          value={products.productName}
-          onChange={(e) =>
-            setProducts({ ...products, productName: e.target.value })
-          }
-        >
-          <option value="#">välj produkt</option>
-          {stocks
-            .filter((stock) => stock.warehouse === warehouse)
-            .map((stock, index) =>
-              stock.products.map((product, index) => (
-                <option key={index} value={product.productName}>
-                  {product.productName}
-                </option>
-              ))
-            )}
-        </select>
-        <br />
-        <label htmlFor="quantity">Skriv in antal enheter</label>
-        <input
-          type="number"
-          id="quantity"
-          placeholder="antal enheter..."
-          value={products.quantity}
-          onChange={(e) =>
-            setProducts({ ...products, quantity: e.target.value })
-          }
-        />
-
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <button
-            onClick={() => {
-              const selectedStock = stocks.find(
-                (stock) => stock.warehouse === warehouse
-              );
-              handleUpdate(
-                selectedStock.id,
-                products.productName,
-                products.quantity
-              );
-            }}
-          >
-            Lägg till
-          </button>
-          <button>Ta bort</button>
-        </div>
+          Lägg till
+        </button>
+        <button className="update__remove-btn">Ta bort</button>
       </div>
+      <p className="update__message">{message}</p>
     </div>
   );
 }
