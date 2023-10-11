@@ -1,0 +1,14 @@
+@import "../../sass/_colors.scss";
+@import "../../sass/_mixins.scss";
+
+.create {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  & h1 {
+    @include titleBig;
+    text-transform: uppercase;
+  }
+}
