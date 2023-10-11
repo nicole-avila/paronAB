@@ -12,7 +12,6 @@
   }
   &__title {
     text-transform: uppercase;
-    font-weight: 200;
     margin: 0 auto;
     letter-spacing: 2px;
     @include titleBig;
@@ -24,6 +23,7 @@
 
   &__section {
     display: flex;
+    justify-content: center;
   }
 
   &__warehouse-title {
