@@ -1,14 +1,16 @@
 import "./UpdateStockBalance.scss";
 import UpdateStockForm from "./UpdateStockForm";
 import { useState, useEffect } from "react";
-import { db } from "../../firebase-config";
+import { db, auth } from "../../firebase-config";
 import {
   collection,
   doc,
   getDoc,
   getDocs,
   updateDoc,
+  addDoc,
 } from "firebase/firestore";
+import UpdateHistory from "../UpdateHistory/UpdateHistory";
 
 export default function UpdateStockBalance() {
   const [warehouse, setWarehouse] = useState("");
@@ -17,6 +19,7 @@ export default function UpdateStockBalance() {
   const [message, setMessage] = useState("");
 
   const stockListCollectionRef = collection(db, "stockList");
+  const updatedHistoryCollectionRef = collection(db, "updatedHistory");
 
   useEffect(() => {
     try {
@@ -62,6 +65,12 @@ export default function UpdateStockBalance() {
 
           await updateDoc(stockListDoc, updatedData);
 
+          await addDoc(updatedHistoryCollectionRef, {
+            author: { email: auth.currentUser.email, id: auth.currentUser.uid },
+            updatedData: updatedData,
+          });
+          console.log(updatedHistoryCollectionRef);
+
           setWarehouse("");
           setProducts({ productName: "", quantity: "" });
           setMessage("Lyckad Uppdatering!");
@@ -103,6 +112,8 @@ export default function UpdateStockBalance() {
         <button className="update__remove-btn">Ta bort</button>
       </div>
       <p className="update__message">{message}</p>
+
+      <UpdateHistory />
     </div>
   );
 }
