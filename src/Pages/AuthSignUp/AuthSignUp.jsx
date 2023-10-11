@@ -23,12 +23,12 @@ export default function AuthSignUp() {
   return (
     <div className="auth">
       {viewComponent === "signup" ? (
-        <div>
+        <div className="auth__container">
           <div className="auth__profile">
             <h1>Skapa ett konto</h1>
           </div>
 
-          <form onSubmit={handleSignUp} className="auth__container">
+          <form onSubmit={handleSignUp} className="auth__form">
             <input
               type="email"
               placeholder="email"
@@ -41,7 +41,7 @@ export default function AuthSignUp() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button>Skapa konto</button>
+            <button className="auth__signup-btn">Skapa konto</button>
           </form>
           <button
             onClick={() => setViewComponent("login")}
