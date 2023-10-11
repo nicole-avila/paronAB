@@ -28,25 +28,30 @@ export default function ReadStockOverview() {
   return (
     <div className="stock">
       <h1 className="stock__title">Lagersaldo</h1>
-      {Array.isArray(readStockList) &&
-        readStockList.map((stock, index) => (
-          <div key={index} className="stock__container">
-            <div>
-              <h1 className="stock__warehouse-title">{stock.warehouse}</h1>
-              <div className="stock__products-container">
-                {stock.products.map((product, index) => (
-                  <div key={index} className="stock__product">
-                    <p className="stock__product-name">{product.productName}</p>
-                    <p className="stock__product-quantity">
-                      {product.quantity} st
-                    </p>
-                  </div>
-                ))}
+      <div className="stock__container">
+        {Array.isArray(readStockList) &&
+          readStockList.map((stock, index) => (
+            <div key={index} className="stock__section">
+              <div>
+                <h1 className="stock__warehouse-title">{stock.warehouse}</h1>
+                <div className="stock__products-container">
+                  {stock.products.map((product, index) => (
+                    <div key={index} className="stock__product-box">
+                      <div className="stock__product-text">
+                        <p className="stock__product-name">
+                          {product.productName}
+                        </p>
+                        <p className="stock__product-quantity">
+                          {product.quantity} st
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      <CreateStockData />
+          ))}
+      </div>
     </div>
   );
 }
