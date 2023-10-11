@@ -18,11 +18,11 @@ export default function TopBar() {
 
   return (
     <div className="topbar">
-      <img
+      {/* <img
         className="topbar__menu"
         src={menu}
         alt="slide drawer icon, 3 lines"
-      />
+      /> */}
       {titleVisibility && (
         <h4 onClick={() => navigate("/paronAB/")} className="topbar__title">
           päron <span>ab</span>

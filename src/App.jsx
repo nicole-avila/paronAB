@@ -9,6 +9,7 @@ import Home from "./Pages/Home/Home";
 import Auth from "./Pages/Auth/AuthLogin";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 import TopBar from "./components/TopBar/TopBar";
+import CreateStock from "./Pages/CreateStock/CreateStock";
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
@@ -45,13 +46,16 @@ function App() {
       <Router>
         <nav>
           {authUser ? (
-            <div className="app__navbar">
+            <div className="app__navbar-container">
               <TopBar />
-              {/* <Link to="/paronAB">Home</Link>
-              <Link to="/paronAB/update-stock">Uppdatera Saldo</Link> */}
-              <button onClick={handelSignOut} className="app__logout-btn">
-                Logga ut
-              </button>
+              <div className="app__navbar-link">
+                <Link to="/paronAB">Home</Link>
+                <Link to="/paronAB/create-stock">Skapa</Link>
+                <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
+                <button onClick={handelSignOut} className="app__logout-btn">
+                  Logga ut
+                </button>
+              </div>
             </div>
           ) : (
             <div className="app__topbar">
@@ -71,6 +75,7 @@ function App() {
           <Route path="/paronAB" element={<Home authUser={authUser} />} />
           <Route path="/paronAB/auth" element={<Auth />} />
           <Route path="/paronAB/update-stock" element={<UpdateStock />} />
+          <Route path="/paronAB/create-stock" element={<CreateStock />} />
         </Routes>
       </Router>
     </div>
