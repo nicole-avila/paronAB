@@ -1,9 +1,21 @@
 import "./TopBar.scss";
 import menu from "../../assets/menu-bar.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function TopBar() {
+  const [titleVisibility, setTitleVisibility] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location === "/paronAB/") {
+      setTitleVisibility(false);
+    } else {
+      setTitleVisibility(true);
+    }
+  }, [location]);
+
   return (
     <div className="topbar">
       <img
@@ -11,9 +23,11 @@ export default function TopBar() {
         src={menu}
         alt="slide drawer icon, 3 lines"
       />
-      <h4 onClick={() => navigate("/paronAB")} className="topbar__title">
-        päron <span>ab</span>
-      </h4>
+      {titleVisibility && (
+        <h4 onClick={() => navigate("/paronAB/")} className="topbar__title">
+          päron <span>ab</span>
+        </h4>
+      )}
     </div>
   );
 }
