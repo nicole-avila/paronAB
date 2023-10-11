@@ -1,22 +1,43 @@
 @import "./_colors.scss";
 
 @mixin btn {
-  width: 100px;
-  height: 30px;
+  width: 120px;
+  height: 35px;
   border-radius: 4px;
   border: none;
-  background: $white;
-  color: $night;
+  background: $pearLight;
+  color: $white;
   text-transform: uppercase;
   font-family: "poppins", sans-serif;
   letter-spacing: 2px;
   font-size: 11px;
   font-weight: 400;
   cursor: pointer;
-  margin: 1rem;
 
   &:hover {
-    color: $pear;
+    color: $pearLight;
+    background: $white;
+    border: 1px solid $pearLight;
+  }
+}
+
+@mixin btnOp {
+  border: 1px solid $pearLight;
+  color: $pearLight;
+  background: $white;
+  width: 120px;
+  height: 35px;
+  text-transform: uppercase;
+  font-family: "poppins", sans-serif;
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: 400;
+  cursor: pointer;
+
+  &:hover {
+    color: $pearLight;
+    // background: $white;
+    // border: 1px solid $pearLight;
   }
 }
 
@@ -25,4 +46,26 @@
   height: 2rem;
   border: 11px;
   border-radius: 1px solid $night;
+}
+
+@mixin HeroTitle {
+  font-family: Saira;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 6rem;
+}
+
+@mixin titleBig {
+  font-family: Saira;
+}
+
+@mixin titleMedium {
+  font-family: Saira;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+@mixin text {
+  font-family: Saira;
 }

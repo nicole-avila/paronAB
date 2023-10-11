@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import Home from "./Pages/Home/Home";
 import Auth from "./Pages/Auth/AuthLogin";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
+import TopBar from "./components/TopBar/TopBar";
 
 /*
 Har använt mig utav useState och useEffekt hook för att uppdatera och hantera 
@@ -39,17 +40,20 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <nav>
-          <Link to="/paronAB">Home</Link>
           {authUser ? (
             <div>
+              <Link to="/paronAB">Home</Link>
               <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
               <button onClick={handelSignOut}>Logga ut</button>
             </div>
           ) : (
-            <Link to="/paronAB/auth">Logga in</Link>
+            <div className="app__topbar">
+              <TopBar />
+              <Link to="/paronAB/auth">Logga in</Link>
+            </div>
           )}
         </nav>
         <Routes>
