@@ -1,0 +1,22 @@
+@import "../../sass/_colors.scss";
+@import "../../sass/_mixins.scss";
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+
+  &__menu {
+    width: 16px;
+  }
+  &__title {
+    @include titleMedium;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__title span {
+    color: $pear;
+  }
+}

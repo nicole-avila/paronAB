@@ -2,10 +2,47 @@
 @import "../../sass/_mixins.scss";
 
 .home {
+  margin-top: 8rem;
+
   &__auth-user {
     display: flex;
     padding: 1rem;
     font-weight: 200;
     margin: 0;
+  }
+
+  &__hero {
+    position: relative;
+  }
+
+  &__hero-title {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include HeroTitle;
+    margin: auto;
+  }
+
+  &__hero-title span {
+    @include HeroTitle;
+    color: $pear;
+  }
+
+  &__img-container {
+    // position: absolute;
+    // bottom: -10%;
+    // right: -20%;
+    // z-index: -1;
+
+    width: 450px;
+    margin-left: auto;
+  }
+
+  &__pear-img {
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-top: auto;
   }
 }
