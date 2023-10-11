@@ -2,25 +2,50 @@
 @import "../../sass/_mixins.scss";
 
 .create {
-  background-color: rgb(253, 201, 227);
+  @include text;
 
   &__form {
-    width: 250px;
     display: flex;
     flex-direction: column;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    height: fit-content;
+
+    border-radius: 11px;
+    background: $white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
 
-  & input {
-    height: 1.5rem;
-    border: 1px solid $night;
-    border-radius: 4px;
+  &__input {
+    @include input;
+    @include text;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1rem;
+    text-indent: 4px;
+    outline: none;
+  }
+  &__input:nth-child(1) {
+    width: 240px;
   }
 
-  & button {
-    margin: 1rem auto;
+  &__container {
+    min-width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__add-produkt-btn {
+    @include btn;
+    margin: 1rem;
     width: 200px;
-    border: 1px solid $night;
+  }
+
+  &__save-btn {
+    @include btnOp;
   }
 }
