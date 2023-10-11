@@ -13,7 +13,6 @@ export default function ReadStockOverview() {
     try {
       async function handelLoading() {
         const getStockListData = await getDocs(stockListCollectionRef);
-        console.log(getStockListData);
         setLoading(false);
       }
       handelLoading();
