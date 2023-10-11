@@ -28,12 +28,12 @@ export default function AuthLogin() {
   return (
     <div className="auth">
       {viewComponent === "login" ? (
-        <div>
+        <div className="auth__container">
           <div className="auth__profile">
             <img src={profileIcon} alt="" />
             <h1>Logga in</h1>
           </div>
-          <form onSubmit={handleSignUp} className="auth__container">
+          <form onSubmit={handleSignUp} className="auth__form">
             <input
               type="email"
               placeholder="email"
@@ -46,10 +46,13 @@ export default function AuthLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button>logga in</button>
+            <button className="auth__login">logga in</button>
           </form>
 
-          <p onClick={() => setViewComponent("signup")}>skapa ett konto</p>
+          <p onClick={() => setViewComponent("signup")}>
+            {" "}
+            <u>skapa ett konto</u>{" "}
+          </p>
         </div>
       ) : (
         <AuthSignUp />

@@ -19,8 +19,12 @@
   & h1 {
     @include titleMedium;
   }
-
   &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -33,11 +37,28 @@
   }
 
   & button {
-    margin: auto;
+    margin: 0.5rem auto;
+  }
+
+  &__signup-btn,
+  &__login {
+    @include btn;
   }
 
   &__login-btn {
-    margin-top: 0.4rem;
-    //   @include btnOp;
+    @include btnOp;
+  }
+
+  & p {
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    color: $pear;
+    cursor: pointer;
+  }
+
+  & p:hover {
+    color: $night;
   }
 }

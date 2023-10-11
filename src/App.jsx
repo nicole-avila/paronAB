@@ -36,19 +36,22 @@ function App() {
     setTopbarVisibility(true);
   }
 
-  // function handleTopBarVisisbility() {
-  //   setTopbarVisibility(false);
-  // }
+  function handleTopBarVisisbility() {
+    setTopbarVisibility(false);
+  }
 
   return (
     <div className="app">
       <Router>
         <nav>
           {authUser ? (
-            <div>
-              <Link to="/paronAB">Home</Link>
-              <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
-              <button onClick={handelSignOut}>Logga ut</button>
+            <div className="app__navbar">
+              <TopBar />
+              {/* <Link to="/paronAB">Home</Link>
+              <Link to="/paronAB/update-stock">Uppdatera Saldo</Link> */}
+              <button onClick={handelSignOut} className="app__logout-btn">
+                Logga ut
+              </button>
             </div>
           ) : (
             <div className="app__topbar">
