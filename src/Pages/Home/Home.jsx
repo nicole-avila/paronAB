@@ -2,8 +2,6 @@ import "./Home.scss";
 import pear from "../../assets/pear-image.png";
 import ReadStockOverview from "../../components/ReadStockOverview/ReadStockOverview";
 import profileIcon from "../../assets/profile-icon.svg";
-import { Link } from "react-router-dom";
-import TopBar from "../../components/TopBar/TopBar";
 
 export default function Home({ authUser }) {
   return (
