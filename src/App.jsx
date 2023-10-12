@@ -40,7 +40,8 @@ function App() {
               <SignOut />
             </div>
           ) : (
-            <div className="app__topbar">
+            <div className="app__home-navbar">
+              <Logo />
               <Link to="/paronAB/auth" className="app__topbar-login">
                 Logga in
               </Link>
