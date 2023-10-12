@@ -66,7 +66,7 @@ export default function UpdateStockBalance() {
           await updateDoc(stockListDoc, updatedData);
 
           await addDoc(updatedHistoryCollectionRef, {
-            author: { email: auth.currentUser.email, id: auth.currentUser.uid },
+            // author: { email: auth.currentUser.email, id: auth.currentUser.uid },
             updatedData: updatedData,
           });
           console.log(updatedHistoryCollectionRef);
@@ -112,8 +112,6 @@ export default function UpdateStockBalance() {
         <button className="update__remove-btn">Ta bort</button>
       </div>
       <p className="update__message">{message}</p>
-
-      <UpdateHistory />
     </div>
   );
 }

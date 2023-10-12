@@ -10,6 +10,7 @@ import Auth from "./Pages/Auth/AuthLogin";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 import TopBar from "./components/TopBar/TopBar";
 import CreateStock from "./Pages/CreateStock/CreateStock";
+import History from "./Pages/History/History";
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
@@ -52,6 +53,7 @@ function App() {
                 <Link to="/paronAB">Home</Link>
                 <Link to="/paronAB/create-stock">Skapa</Link>
                 <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
+                <Link to="/paronAB/history">History</Link>
                 <button onClick={handelSignOut} className="app__logout-btn">
                   Logga ut
                 </button>
@@ -76,6 +78,7 @@ function App() {
           <Route path="/paronAB/auth" element={<Auth />} />
           <Route path="/paronAB/update-stock" element={<UpdateStock />} />
           <Route path="/paronAB/create-stock" element={<CreateStock />} />
+          <Route path="/paronAB/history" element={<History />} />
         </Routes>
       </Router>
     </div>
