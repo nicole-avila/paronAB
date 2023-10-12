@@ -9,10 +9,11 @@ import AuthSignUp from "../AuthSignUp/AuthSignUp";
 export default function AuthLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [viewComponent, setViewComponent] = useState("login");
   const navigate = useNavigate();
 
-  function handleSignUp(e) {
+  function handleLogin(e) {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -21,6 +22,7 @@ export default function AuthLogin() {
       })
       .catch((error) => {
         console.log(error);
+        setMessage("Något fel skedde, försök igen");
       });
   }
 
@@ -32,7 +34,7 @@ export default function AuthLogin() {
             <img src={profileIcon} alt="" />
             <h1>Logga in</h1>
           </div>
-          <form onSubmit={handleSignUp} className="auth__form">
+          <form onSubmit={handleLogin} className="auth__form">
             <input
               type="email"
               placeholder="email"
@@ -45,6 +47,7 @@ export default function AuthLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <p className="auth__login-message">{message}</p>
             <button className="auth__login">logga in</button>
           </form>
 
