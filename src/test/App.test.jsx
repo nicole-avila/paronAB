@@ -17,7 +17,7 @@ describe("App", () => {
     render(<App />);
 
     const user = userEvent;
-    const LogIn = screen.getByRole("link", "Logga in");
+    const LogIn = screen.getByRole("link", "Logga");
     expect(LogIn).toBeInTheDocument();
 
     user.click(LogIn);

@@ -55,6 +55,7 @@ function App() {
           <Route path="/paronAB/update-stock" element={<UpdateStock />} />
           <Route path="/paronAB/create-stock" element={<CreateStock />} />
           <Route path="/paronAB/history" element={<History />} />
+          <Route path="*" element={<Home authUser={authUser} />} />
         </Routes>
       </Router>
     </div>
