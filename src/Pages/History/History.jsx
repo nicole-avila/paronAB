@@ -1,3 +1,4 @@
+import "./History.scss";
 import UpdateHistory from "../../components/UpdateHistory/UpdateHistory";
 
 export default function History() {
