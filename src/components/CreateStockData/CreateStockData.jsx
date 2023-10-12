@@ -22,6 +22,7 @@ export default function CreateStockData() {
 
   async function handleForm(e) {
     e.preventDefault();
+    setLoading(true);
     if (warehouse && products.length > 0) {
       try {
         await addDoc(stockListCollectionRef, {
@@ -36,6 +37,7 @@ export default function CreateStockData() {
       } catch (error) {
         console.error("något fel inträffa", error);
       }
+      setLoading(false);
     }
   }
 
@@ -55,6 +57,7 @@ export default function CreateStockData() {
   return (
     <div className="create">
       {/* <div className="create__form"> */}
+      <p>{message}</p>
       <span>Lägg till ett färdigvarulager</span>
       <input
         className="create__input"
@@ -90,13 +93,17 @@ export default function CreateStockData() {
           </div>
         ))}
       </div>
+
       <button onClick={addMoreProduct} className="create__add-produkt-btn">
         lägg till en ny produkt
       </button>
       {/* </div> */}
-      <p>{message}</p>
-      <button onClick={handleForm} className="create__save-btn">
-        spara
+      <button
+        onClick={handleForm}
+        className="create__save-btn"
+        disabled={loading}
+      >
+        {loading ? "invänta sparandet" : "spara"}
       </button>
     </div>
   );
