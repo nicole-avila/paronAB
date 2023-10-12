@@ -36,7 +36,7 @@ function App() {
                 <Link to="/paronAB">Home</Link>
                 <Link to="/paronAB/create-stock">Skapa</Link>
                 <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
-                <Link to="/paronAB/history"></Link>
+                <Link to="/paronAB/history">Historik</Link>
                 <SignOut />
               </div>
             </div>

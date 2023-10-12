@@ -42,7 +42,7 @@ export default function AuthLogin() {
             />
             <input
               type="password"
-              placeholder="passowrd"
+              placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
