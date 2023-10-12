@@ -7,14 +7,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import Home from "./Pages/Home/Home";
 import Auth from "./Pages/Auth/AuthLogin";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
-import TopBar from "./components/TopBar/TopBar";
+
 import CreateStock from "./Pages/CreateStock/CreateStock";
 import History from "./Pages/History/History";
 import SignOut from "./components/SignOut/SignOut";
+import Navbar from "./components/Navbar/NavBar";
+import Logo from "./components/Logo/Logo";
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -29,32 +30,22 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <nav className="app__navbar">
+        <nav>
           {authUser ? (
             <div className="app__navbar-container">
-              <TopBar />
-              <div className={`app__nav-items ${isOpen && "app__open"}`}>
-                <Link to="/paronAB/">Home</Link>
-                <Link to="/paronAB/create-stock">Skapa</Link>
-                <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
-                <Link to="/paronAB/history">Historik</Link>
-                <SignOut />
+              <div className="app__navbar">
+                <Logo />
+                <Navbar />
               </div>
+              <SignOut />
             </div>
           ) : (
             <div className="app__topbar">
-              <TopBar />
               <Link to="/paronAB/auth" className="app__topbar-login">
                 Logga in
               </Link>
             </div>
           )}
-          <div
-            className={`app__nav-toggle ${isOpen && "app__open"}`}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <div className="app__bar"></div>
-          </div>
         </nav>
         <Routes>
           <Route path="/paronAB/" element={<Home authUser={authUser} />} />
