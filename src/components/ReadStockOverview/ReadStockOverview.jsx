@@ -12,7 +12,7 @@ export default function ReadStockOverview() {
   useEffect(() => {
     try {
       async function handelLoading() {
-        const getStockListData = await getDocs(stockListCollectionRef);
+        await getDocs(stockListCollectionRef);
         setLoading(false);
       }
       handelLoading();
