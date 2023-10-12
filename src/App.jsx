@@ -1,7 +1,6 @@
 import "./App.scss";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -11,10 +10,10 @@ import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 import TopBar from "./components/TopBar/TopBar";
 import CreateStock from "./Pages/CreateStock/CreateStock";
 import History from "./Pages/History/History";
+import SignOut from "./components/SignOut/SignOut";
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
-  const [topbarVisibility, setTopbarVisibility] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -25,22 +24,6 @@ function App() {
       }
     });
   }, []);
-
-  function handelSignOut() {
-    signOut(auth)
-      .then(() => {
-        console.log("Sign out successful");
-      })
-      .catch((error) => console.log(error));
-  }
-
-  function handleLoginClick() {
-    setTopbarVisibility(true);
-  }
-
-  function handleTopBarVisisbility() {
-    setTopbarVisibility(false);
-  }
 
   return (
     <div className="app">
@@ -53,21 +36,14 @@ function App() {
                 <Link to="/paronAB">Home</Link>
                 <Link to="/paronAB/create-stock">Skapa</Link>
                 <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
-                <Link to="/paronAB/history">History</Link>
-                <button onClick={handelSignOut} className="app__logout-btn">
-                  Logga ut
-                </button>
+                <Link to="/paronAB/history"></Link>
+                <SignOut />
               </div>
             </div>
           ) : (
             <div className="app__topbar">
-              {topbarVisibility && <TopBar />}
-
-              <Link
-                to="/paronAB/auth"
-                onClick={handleLoginClick}
-                className="app__topbar-login"
-              >
+              <TopBar />
+              <Link to="/paronAB/auth" className="app__topbar-login">
                 Logga in
               </Link>
             </div>
