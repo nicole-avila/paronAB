@@ -3,17 +3,26 @@ import { auth } from "../../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import AuthLogin from "../Auth/AuthLogin";
 import "../Auth/Auth.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthSignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [viewComponent, setViewComponent] = useState("signup");
+  const navigate = useNavigate();
 
   function handleSignUp(e) {
     e.preventDefault();
+
+    if (password.length < 6) {
+      setPasswordError("Lösenordet måste innehålla minst 6 tecken");
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        navigate("/paronAb/home");
       })
       .catch((error) => {
         console.log(error);
@@ -37,10 +46,14 @@ export default function AuthSignUp() {
             />
             <input
               type="password"
-              placeholder="passowrd"
+              placeholder="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setPasswordError("");
+              }}
             />
+            <p className="auth__password-text">{passwordError}</p>
             <button className="auth__signup-btn">Skapa konto</button>
           </form>
           <button

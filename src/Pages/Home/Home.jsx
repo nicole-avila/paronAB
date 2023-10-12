@@ -1,5 +1,5 @@
 import "./Home.scss";
-import pear from "../../assets/pear-image.png";
+// import pear from "../../assets/pear-image.png";
 import ReadStockOverview from "../../components/ReadStockOverview/ReadStockOverview";
 import profileIcon from "../../assets/profile-icon.svg";
 
@@ -17,15 +17,15 @@ export default function Home({ authUser }) {
       ) : (
         <div className="home-hero">
           <h1 className="home__hero-title">
-            Päron <span>Ab</span>
+            Päron <span className="home__title-ab">Ab</span>
           </h1>
-          <div className="home__img-container">
+          {/* <div className="home__img-container">
             <img
               className="home__pear-img"
               src={pear}
               alt="glas transparent pear in color gray"
             />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

@@ -14,6 +14,7 @@ import SignOut from "./components/SignOut/SignOut";
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -28,12 +29,12 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <nav>
+        <nav className="app__navbar">
           {authUser ? (
             <div className="app__navbar-container">
               <TopBar />
-              <div className="app__navbar-link">
-                <Link to="/paronAB">Home</Link>
+              <div className={`app__nav-items ${isOpen && "app__open"}`}>
+                <Link to="/paronAB/">Home</Link>
                 <Link to="/paronAB/create-stock">Skapa</Link>
                 <Link to="/paronAB/update-stock">Uppdatera Saldo</Link>
                 <Link to="/paronAB/history">Historik</Link>
@@ -48,9 +49,15 @@ function App() {
               </Link>
             </div>
           )}
+          <div
+            className={`app__nav-toggle ${isOpen && "app__open"}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div className="app__bar"></div>
+          </div>
         </nav>
         <Routes>
-          <Route path="/paronAB" element={<Home authUser={authUser} />} />
+          <Route path="/paronAB/" element={<Home authUser={authUser} />} />
           <Route path="/paronAB/auth" element={<Auth />} />
           <Route path="/paronAB/update-stock" element={<UpdateStock />} />
           <Route path="/paronAB/create-stock" element={<CreateStock />} />

@@ -45,7 +45,7 @@ export default function ReadStockOverview() {
         {loading ? (
           <p className="stock__loading">Loading...</p>
         ) : (
-          <div>
+          <>
             {Array.isArray(readStockList) &&
               readStockList.map((stock, index) => (
                 <div key={index} className="stock__section">
@@ -70,7 +70,7 @@ export default function ReadStockOverview() {
                   </div>
                 </div>
               ))}
-          </div>
+          </>
         )}
       </div>
     </div>

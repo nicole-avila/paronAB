@@ -17,13 +17,10 @@
     @include titleBig;
   }
   &__container {
-    margin: auto;
-    width: 800px;
-  }
-
-  &__section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   &__warehouse-title {
@@ -37,16 +34,19 @@
 
   &__products-container {
     display: flex;
-    justify-content: center;
-    margin: 0 0 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
+  &__section {
+    width: 80%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &__product-box {
-    margin: 0 1rem;
     @include productBox;
-    // height: 70px;
-    // border: 1px solid $pear;
-    // border-radius: 4px;
   }
 
   &__product-text {

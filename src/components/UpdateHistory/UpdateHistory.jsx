@@ -20,7 +20,7 @@ export default function UpdateHistory() {
     }
   }, []);
   return (
-    <div>
+    <div style={{ margin: "auto" }}>
       {Array.isArray(historys) &&
         historys.map((history, index) => {
           console.log(history);

@@ -2,7 +2,6 @@
 @import "../../sass/_mixins.scss";
 
 .home {
-  margin-top: 1rem;
   &__profile {
     display: flex;
     flex-direction: row-reverse;
@@ -29,22 +28,19 @@
     margin: 0.5rem;
   }
 
-  &__hero {
-    position: relative;
-  }
-
   &__hero-title {
-    // position: absolute;
-    // top: 30%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
+    width: 525px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    // display: flex;
+    // justify-content: center;
     @include HeroTitle;
-    margin: 5rem auto 0;
   }
 
-  &__hero-title span {
+  &__title-ab {
     @include HeroTitle;
     color: $pear;
   }
@@ -63,5 +59,40 @@
     display: flex;
     margin-left: auto;
     margin-top: auto;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 900px) {
+  .home {
+    &__hero-title,
+    &__title-ab {
+      font-size: 6rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .home {
+    &__hero-title,
+    &__title-ab {
+      font-size: 4rem;
+      display: flex;
+      justify-content: center;
+      width: 200px;
+    }
+  }
+}
+
+@media only screen and (max-width: 299px) {
+  .home {
+    &__hero-title,
+    &__title-ab {
+      font-size: 3rem;
+      display: flex;
+      justify-content: center;
+      width: 200px;
+    }
   }
 }

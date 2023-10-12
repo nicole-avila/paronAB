@@ -2,16 +2,17 @@
 @import "./sass/_mixins.scss";
 // #root {
 //   max-width: 1280px;
-//   margin: 0 auto;
-//   padding: 2rem;
-//   text-align: center;
+//   padding: 0%;
+//   margin: 0%;
 // }
+
 body {
   padding: 0%;
   margin: 0%;
 }
 
 .app {
+  height: 100vh;
   &__topbar {
     display: flex;
     align-items: baseline;
@@ -29,7 +30,7 @@ body {
     justify-content: space-between;
   }
 
-  &__navbar-link {
+  &__nav-items {
     display: flex;
     align-items: center;
     gap: 1.2rem;
@@ -49,5 +50,86 @@ body {
   &__logout-btn {
     margin-left: auto;
     @include btn;
+  }
+
+  &__nav-toggle {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .app {
+    &__nav-items {
+      position: absolute;
+      top: 50px;
+      display: flex;
+      flex-direction: column;
+      background: #3b4da7;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateX(100%);
+      transition: all 0.45s;
+    }
+
+    & a::before {
+      background: transparent;
+    }
+
+    &__open {
+      transform: translateX(0);
+    }
+
+    &__nav-toggle {
+      display: flex;
+      width: 50px;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    &__bar {
+      position: relative;
+      width: 32px;
+      height: 2px;
+      background: #000000;
+      transition: all 0.45s ease-in-out;
+    }
+
+    &__bar::before,
+    &__bar::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      background: #000000;
+      border-radius: 2px;
+      transition: all 0.45s ease-in-out;
+    }
+
+    &__bar::before {
+      width: 25px;
+      transform: translateY(-8px);
+      right: 0;
+    }
+
+    &__bar::after {
+      width: 32px;
+      transform: translateY(8px);
+    }
+
+    &__bar {
+      transform: translateX(-40px);
+      background: transparent;
+    }
+
+    &__bar::before {
+      width: 32px;
+      transform: rotate(45deg) translate(26px, -26px);
+    }
+
+    &__bar::after {
+      transform: rotate(-45deg) translate(26px, 26px);
+    }
   }
 }
