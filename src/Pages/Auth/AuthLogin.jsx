@@ -22,7 +22,7 @@ export default function AuthLogin() {
       })
       .catch((error) => {
         console.log(error);
-        setMessage("Något fel skedde, försök igen");
+        setMessage("Inloggningen misslyckades, försök igen");
       });
   }
 
@@ -40,6 +40,10 @@ export default function AuthLogin() {
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onClick={() => {
+                setMessage("");
+                setPassword("");
+              }}
             />
             <input
               type="password"
