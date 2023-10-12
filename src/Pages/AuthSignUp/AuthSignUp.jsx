@@ -43,6 +43,7 @@ export default function AuthSignUp() {
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onClick={() => setPasswordError("")}
             />
             <input
               type="password"

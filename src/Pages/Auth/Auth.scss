@@ -37,7 +37,7 @@
   }
 
   & button {
-    margin: 0.5rem auto;
+    margin: 0.2rem auto;
   }
 
   &__signup-btn,
@@ -53,16 +53,48 @@
     margin: 0;
   }
 
-  & p {
+  &__signup-text {
     font-size: 11px;
     display: flex;
     justify-content: center;
-    margin: 0;
+    align-items: center;
     color: $pear;
     cursor: pointer;
+    margin: 2rem 0 0 0;
   }
 
-  & p:hover {
+  &__signup-text:hover {
     color: $night;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .auth {
+    &__form {
+      gap: 1rem;
+      display: flex;
+      text-align: center;
+    }
+
+    &__signup-btn,
+    &__login-btn,
+    &__login {
+      width: 12rem;
+      height: 2.5rem;
+    }
+
+    & input {
+      height: 2.5rem;
+    }
+
+    &__signup-btn {
+      background: $pear;
+      color: $white;
+    }
+
+    &__password-text {
+      font-size: 11px;
+      color: $pear;
+    }
   }
 }

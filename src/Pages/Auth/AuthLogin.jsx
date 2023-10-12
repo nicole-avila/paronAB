@@ -49,7 +49,10 @@ export default function AuthLogin() {
             <button className="auth__login">logga in</button>
           </form>
 
-          <p onClick={() => setViewComponent("signup")}>
+          <p
+            onClick={() => setViewComponent("signup")}
+            className="auth__signup-text"
+          >
             {" "}
             <u>skapa ett konto</u>{" "}
           </p>
