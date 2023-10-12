@@ -69,3 +69,23 @@
     margin-top: 0.4rem;
   }
 }
+
+@media only screen and (max-width: 700px) {
+  .stock {
+    &__warehouse-title {
+      justify-content: center;
+    }
+    &__product-box {
+      margin: auto;
+      height: 3rem;
+    }
+
+    .stock__product-quantity {
+      margin: 0;
+    }
+
+    &__product-text {
+      padding: 0.1rem 0.4rem;
+    }
+  }
+}

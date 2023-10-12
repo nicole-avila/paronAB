@@ -10,6 +10,7 @@
 
   &__title {
     text-transform: uppercase;
+    text-align: center;
   }
 
   &__form {
@@ -45,5 +46,11 @@
 
   &__remove-btn {
     @include btnOp;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .update {
+    font-size: 0.8rem;
   }
 }

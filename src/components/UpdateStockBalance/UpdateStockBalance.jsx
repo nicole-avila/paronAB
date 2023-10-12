@@ -1,7 +1,7 @@
 import "./UpdateStockBalance.scss";
 import UpdateStockForm from "./UpdateStockForm";
 import { useState, useEffect } from "react";
-import { db, auth } from "../../firebase-config";
+import { db } from "../../firebase-config";
 import {
   collection,
   doc,
@@ -10,7 +10,6 @@ import {
   updateDoc,
   addDoc,
 } from "firebase/firestore";
-import UpdateHistory from "../UpdateHistory/UpdateHistory";
 
 export default function UpdateStockBalance() {
   const [warehouse, setWarehouse] = useState("");
