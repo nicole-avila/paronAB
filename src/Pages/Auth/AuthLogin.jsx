@@ -1,11 +1,10 @@
+import "./Auth.scss";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
-import "./Auth.scss";
 import profileIcon from "../../assets/profile-icon.svg";
 import AuthSignUp from "../AuthSignUp/AuthSignUp";
-import TopBar from "../../components/TopBar/TopBar";
 
 export default function AuthLogin() {
   const [email, setEmail] = useState("");
@@ -18,7 +17,7 @@ export default function AuthLogin() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
-        navigate("/paronAB");
+        navigate("/paronAB/");
       })
       .catch((error) => {
         console.log(error);
