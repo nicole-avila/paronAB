@@ -26,7 +26,6 @@
   &__warehouse-title {
     display: flex;
     justify-content: flex-start;
-    padding: 0 1rem;
     margin: 0;
     @include titleMedium;
     font-weight: 600;
@@ -45,6 +44,16 @@
     justify-content: center;
     align-items: center;
   }
+
+  &__section-top {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__delete {
+    width: 15px;
+    padding: 0 0 0 1rem;
+  }
   &__product-box {
     @include productBox;
   }
@@ -58,12 +67,12 @@
     display: flex;
     margin: 0%;
     @include text;
-    // padding: 0.2rem 0.5rem;
-    // margin: 0.2rem 0;
   }
+
   &__product-name {
     justify-content: flex-start;
   }
+
   &__product-quantity {
     justify-content: flex-end;
     margin-top: 0.4rem;
@@ -72,12 +81,16 @@
 
 @media only screen and (max-width: 700px) {
   .stock {
-    &__warehouse-title {
+    &__products-container {
+      flex-direction: column;
+    }
+    &__section-top {
       justify-content: center;
     }
     &__product-box {
       margin: auto;
       height: 3rem;
+      width: 12rem;
     }
 
     .stock__product-quantity {

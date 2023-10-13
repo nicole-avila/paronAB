@@ -1,13 +1,13 @@
 import "./ReadStockOverview.scss";
-import CreateStockData from "../CreateStockData/CreateStockData";
+import trashCan from "../../assets/trash-can.svg";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
 export default function ReadStockOverview() {
   const [readStockList, setReadStockList] = useState([]);
-  const stockListCollectionRef = collection(db, "stockList");
   const [loading, setLoading] = useState(true);
+  const stockListCollectionRef = collection(db, "stockList");
 
   useEffect(() => {
     try {
@@ -21,22 +21,27 @@ export default function ReadStockOverview() {
     }
   }, []);
 
-  console.log(readStockList);
-
   useEffect(() => {
     try {
       async function getStockList() {
         const data = await getDocs(stockListCollectionRef);
-        console.log(data);
         setReadStockList(data.docs.map((doc) => ({ ...doc.data() })));
       }
       getStockList();
+      console.log(readStockList);
     } catch (error) {
       console.log("error", error);
     }
-
-    console.log(readStockList);
   }, []);
+
+  // async function handleDelete() {
+  //   try {
+  //     const stockListDocRef = doc(db, "stockList");
+  //     console.log(stockListDocRef);
+  //   } catch (error) {
+  //     console.error("error removing doc: ", error);
+  //   }
+  // }
 
   return (
     <div className="stock">
@@ -50,9 +55,17 @@ export default function ReadStockOverview() {
               readStockList.map((stock, index) => (
                 <div key={index} className="stock__section">
                   <div>
-                    <h1 className="stock__warehouse-title">
-                      {stock.warehouse}
-                    </h1>
+                    <div className="stock__section-top">
+                      <h1 className="stock__warehouse-title">
+                        {stock.warehouse}
+                      </h1>
+                      {/* <img
+                        className="stock__delete"
+                        src={trashCan}
+                        alt="trash can in black color"
+                        onClick={() => handleDelete()}
+                      /> */}
+                    </div>
                     <div className="stock__products-container">
                       {stock.products.map((product, index) => (
                         <div key={index} className="stock__product-box">
