@@ -62,11 +62,3 @@ function App() {
 }
 
 export default App;
-
-/*
-Har använt mig utav useState och useEffekt hook för att uppdatera och hantera 
-autentiseringsstatusen för användaren. 
-Så om användaren är inloggad, uppdaterar authUser till användarobjektet OM anvädnaren INTE är 
-inloggad, uppdaterar authUser till NULL, skickar iväg det state till Home för en bekräftelse att man är inloggad
-på sin mail. Sedan OM authUser är sann (alltså inloggad) så visa en button för att 'logga ut' annars visa en länk till Logga in sidan. 
-*/
