@@ -10,11 +10,8 @@ export default function Navbar() {
   }
 
   return (
-    <div className="navbar">
-      <div
-        className={`navbar__toggle ${isOpen && "navbar__open"}`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+    <div className="navbar" onClick={() => setIsOpen(!isOpen)}>
+      <div className={`navbar__toggle ${isOpen && "navbar__open"}`}>
         <div className="navbar__bar"></div>
       </div>
       <div className={`navbar__items ${isOpen && "navbar__open"}`}>

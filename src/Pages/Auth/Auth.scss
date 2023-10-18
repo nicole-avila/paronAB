@@ -50,13 +50,17 @@
   }
 
   &__password-text {
-    margin: 0;
+    @include text;
+    color: $pear;
+    margin: 0 auto;
+    font-size: 11px;
   }
 
   &__login-message {
     @include text;
     color: $pear;
-    margin: 0;
+    margin: 0 auto;
+    font-size: 11px;
   }
 
   &__signup-text {

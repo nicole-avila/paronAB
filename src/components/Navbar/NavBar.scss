@@ -4,6 +4,8 @@
 .navbar {
   margin: auto;
   padding-right: 0.5rem;
+  cursor: pointer;
+
   &__navbar-container {
     display: flex;
     margin: 0.5rem 1rem;

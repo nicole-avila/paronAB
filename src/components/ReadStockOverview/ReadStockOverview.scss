@@ -4,6 +4,8 @@
 .stock {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &__loading {
     display: flex;
@@ -21,6 +23,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 648px;
   }
 
   &__warehouse-title {
@@ -38,7 +41,7 @@
   }
 
   &__section {
-    width: 80%;
+    // width: 80%;  //NOTIS - Vid ett annat tillfälle gör om det till en grid ist för flex
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
@@ -48,6 +51,8 @@
   &__section-top {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
   }
 
   &__delete {
