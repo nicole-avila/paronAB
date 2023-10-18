@@ -1,8 +1,9 @@
-# React + Vite
+# Päron AB
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Teknikföretaget företaget P’ron AB behöver effektivisera logistikhanteringen genom att ersätta det **nuvarande kalkylarket med en webbapplikation**.
 
-Currently, two official plugins are available:
+Företaget önskar införa en modernare IT-lösning som möjliggör rapportering av förändringar i färdigvarulagret samt visning av aktuella lagersaldon.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Målet är att minska tidsåtgången och öka arbeseffektiviteten för deras anställda genom att skapa en användarvänlig applikation som kan köras på olika plattformar. Lagersaldon ska hanteras på serversidan för att undvika nollställning vid applikationsstart.
+
+##### React + Vite
