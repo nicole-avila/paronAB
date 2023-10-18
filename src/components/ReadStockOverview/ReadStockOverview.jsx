@@ -1,47 +1,37 @@
 import "./ReadStockOverview.scss";
-import trashCan from "../../assets/trash-can.svg";
 import { useEffect, useState } from "react";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import DeleteStockData from "../DeleteStockData/DeleteStockData";
+import { useQuery } from "react-query";
 
 export default function ReadStockOverview() {
-  const [readStockList, setReadStockList] = useState([]);
+  // const [readStockList, setReadStockList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const stockListCollectionRef = collection(db, "stockList");
+  const { data: readStockList } = useQuery("stockList", getStockList);
+
+  async function getStockList() {
+    try {
+      const stockListCollectionRef = collection(db, "stockList");
+      const data = await getDocs(stockListCollectionRef);
+      console.log(data);
+      return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    } catch (error) {
+      console.error("error", error);
+    }
+  }
 
   useEffect(() => {
-    try {
-      async function handelLoading() {
-        await getDocs(stockListCollectionRef);
+    async function getStockListData() {
+      try {
+        await getStockList();
         setLoading(false);
+      } catch (error) {
+        console.error("error fetching data", error);
       }
-      handelLoading();
-    } catch (error) {
-      console.log("error", error);
     }
+    getStockListData();
   }, []);
-
-  useEffect(() => {
-    try {
-      async function getStockList() {
-        const data = await getDocs(stockListCollectionRef);
-        setReadStockList(data.docs.map((doc) => ({ ...doc.data() })));
-      }
-      getStockList();
-      console.log(readStockList);
-    } catch (error) {
-      console.log("error", error);
-    }
-  }, []);
-
-  // async function handleDelete() {
-  //   try {
-  //     const stockListDocRef = doc(db, "stockList");
-  //     console.log(stockListDocRef);
-  //   } catch (error) {
-  //     console.error("error removing doc: ", error);
-  //   }
-  // }
 
   return (
     <div className="stock">
@@ -59,12 +49,7 @@ export default function ReadStockOverview() {
                       <h1 className="stock__warehouse-title">
                         {stock.warehouse}
                       </h1>
-                      {/* <img
-                        className="stock__delete"
-                        src={trashCan}
-                        alt="trash can in black color"
-                        onClick={() => handleDelete()}
-                      /> */}
+                      <DeleteStockData stockId={stock.id} />
                     </div>
                     <div className="stock__products-container">
                       {stock.products.map((product, index) => (
