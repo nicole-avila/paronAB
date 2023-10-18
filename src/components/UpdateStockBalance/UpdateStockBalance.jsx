@@ -9,6 +9,7 @@ import {
   getDocs,
   updateDoc,
   addDoc,
+  increment,
 } from "firebase/firestore";
 
 export default function UpdateStockBalance() {
@@ -44,18 +45,14 @@ export default function UpdateStockBalance() {
 
         if (warehouseDocSnap.exists()) {
           const data = warehouseDocSnap.data();
-          console.log(data);
-          console.log(data.products);
 
           const productQuantity = Number(quantity);
           const productUpdate = data.products.map((product) => {
             if (product.productName === productName) {
-              return { ...product, quantity: productQuantity };
+              return { ...product, quantity: increment(productQuantity) };
             }
             return product;
           });
-          console.log(productQuantity);
-          console.log(productUpdate);
 
           const updatedData = {
             ...data,
@@ -76,7 +73,7 @@ export default function UpdateStockBalance() {
           console.log("antalet i podukten är uppdaterad");
         }
       } catch (error) {
-        console.log("något fel inträffa", error);
+        console.error("något fel inträffa", error);
       }
     }
   }
