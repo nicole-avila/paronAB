@@ -4,11 +4,12 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../firebase-config";
 
 export default function CreateStockData() {
+  const [loading, setLoading] = useState(false);
   const [warehouse, setWarehouse] = useState("");
   const [products, setProducts] = useState([{ productName: "", quantity: "" }]);
   const [message, setMessage] = useState("");
+  const [numberMessage, setNumberMessage] = useState("");
   const stockListCollectionRef = collection(db, "stockList");
-  const [loading, setLoading] = useState(false);
 
   function addMoreProduct(e) {
     e.preventDefault();
@@ -44,6 +45,11 @@ export default function CreateStockData() {
   function handleChange(e, index) {
     const { name, value } = e.target;
 
+    if (name === "quantity" && Number.isNaN(Number(value))) {
+      setNumberMessage("Vänligen ange siffror");
+      return;
+    }
+
     setProducts((prevProducts) => {
       const updateProducts = [...prevProducts];
       updateProducts[index] = {
@@ -52,6 +58,7 @@ export default function CreateStockData() {
       };
       return updateProducts;
     });
+    setNumberMessage("");
   }
 
   return (
@@ -93,6 +100,7 @@ export default function CreateStockData() {
           </div>
         ))}
       </div>
+      {numberMessage && <p>{numberMessage}</p>}
 
       <button onClick={addMoreProduct} className="create__add-produkt-btn">
         lägg till en ny produkt
