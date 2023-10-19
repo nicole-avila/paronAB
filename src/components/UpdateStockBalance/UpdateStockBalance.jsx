@@ -22,17 +22,17 @@ export default function UpdateStockBalance() {
   const updatedHistoryCollectionRef = collection(db, "updatedHistory");
 
   useEffect(() => {
-    try {
-      async function getStockList() {
+    async function getStockList() {
+      try {
         const data = await getDocs(stockListCollectionRef);
         console.log(data);
         setStocks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      } catch (error) {
+        console.log("error", error);
       }
-      getStockList();
-    } catch (error) {
-      console.log("error", error);
     }
-  }, []);
+    getStockList();
+  }, [stockListCollectionRef]);
 
   async function handleUpdate(id, productName, quantity) {
     if (warehouse && products.productName && products.quantity) {

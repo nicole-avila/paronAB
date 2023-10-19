@@ -35,7 +35,7 @@ export default function UpdateStockForm({
           <option value="#">välj produkt</option>
           {stocks
             .filter((stock) => stock.warehouse === warehouse)
-            .map((stock, index) =>
+            .map((stock) =>
               stock.products.map((product, index) => (
                 <option key={index} value={product.productName}>
                   {product.productName}
