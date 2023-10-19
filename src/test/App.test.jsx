@@ -1,11 +1,8 @@
-import { getByRole, render, screen, waitFor } from "@testing-library/react";
+import { v4 as uuidv4 } from "uuid";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
-import { Navigate } from "react-router-dom";
-import AuthLogin from "../Pages/Auth/AuthLogin";
-import Home from "../Pages/Home/Home";
-import { v4 as uuidv4 } from "uuid";
 
 describe("Testing App", () => {
   it("should render title Päron AB", () => {
