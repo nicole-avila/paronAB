@@ -24,9 +24,6 @@ export default function Navbar() {
         <Link to="/paronAB/update-stock" onClick={handleLinkClick}>
           Uppdatera Saldo
         </Link>
-        {/* <Link to="/paronAB/history" onClick={handleLinkClick}>
-          Historik
-        </Link> */}
       </div>
     </div>
   );

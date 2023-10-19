@@ -10,7 +10,6 @@ import Auth from "./Pages/Auth/AuthLogin";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 
 import CreateStock from "./Pages/CreateStock/CreateStock";
-import History from "./Pages/History/History";
 import SignOut from "./components/SignOut/SignOut";
 import Navbar from "./components/Navbar/NavBar";
 import Logo from "./components/Logo/Logo";
@@ -57,7 +56,6 @@ function App() {
             <Route path="/paronAB/auth" element={<Auth />} />
             <Route path="/paronAB/update-stock" element={<UpdateStock />} />
             <Route path="/paronAB/create-stock" element={<CreateStock />} />
-            <Route path="/paronAB/history" element={<History />} />
             <Route path="*" element={<Home authUser={authUser} />} />
           </Routes>
         </Router>
