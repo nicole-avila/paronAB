@@ -12,7 +12,7 @@ module.exports = {
   settings: { react: { version: "18.2" } },
   plugins: ["react-refresh"],
   rules: {
-    "react/prop-types": 0, // tar bort fel för ESLint.
+    "react/prop-types": "off", // tar bort fel för ESLint.
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
