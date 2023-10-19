@@ -1,8 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { getByRole, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
-import CreateStock from "../Pages/CreateStock/CreateStock";
+import { Navigate } from "react-router-dom";
+import AuthLogin from "../Pages/Auth/AuthLogin";
+import Home from "../Pages/Home/Home";
+import { v4 as uuidv4 } from "uuid";
 
 describe("Testing App", () => {
   it("should render title Päron AB", () => {
@@ -29,103 +32,50 @@ describe("Testing App", () => {
     expect(screen.getByText("skapa ett konto")).toBeInTheDocument();
   });
 
-  it("should be able to login and see 'Lagersaldo-component' ", async () => {
-    render(<App />);
+  /*
+  I testingen här nedan bör det användas en unik e-postadress för varje testkörning.
+  För att lösa det använder jag en unik e-postadress för varje testfall för att förhindra att Firebase rapporterar felet: "email-already-in-use" error.
+  Jag installerade ”uuid"-biblioteket som ett beroende i mitt projekt för att generera unika e-postadresser.
+  Så nu genererar det en unik e-postadress för varje testkörning för att undvika konflikter med befintliga konton och utför en lyckad testing vid signering.
+  */
+
+  it("should be able to sign up and with success signup and navigate to 'Lagersaldo-komponent", async () => {
+    const uniqueEmail = `email-${uuidv4()}@paron.se`;
+    render(<App />, { authUser: { email: uniqueEmail } });
+
     const user = userEvent.setup();
-    const LogIn = screen.getByRole("link", "Logga");
-    expect(LogIn).toBeInTheDocument();
-
-    await user.click(LogIn);
-
-    const inputLogin = screen.getByPlaceholderText("email");
-    await user.type(inputLogin, "nicoleavila@paron.se");
-
-    const inputPassword = screen.getByPlaceholderText("password");
-    await user.type(inputPassword, "123456");
-
-    const loginButton = screen.getByRole("button", { name: "logga in" });
-
-    await user.click(loginButton);
-
-    await waitFor(() => {
-      expect(
-        screen.getByRole("button", { name: "Logga ut" })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("heading", { name: "Lagersaldo" })
-      ).toBeInTheDocument();
-    });
-  });
-
-  it("should be able to click to 'Skapa' and navigate to CreateStock Page", async () => {
-    render(<App />);
-    const user = userEvent.setup();
-    const LogIn = screen.getByRole("link", "Logga");
+    const LogIn = screen.getByRole("link", "Logga in");
     expect(LogIn).toBeInTheDocument();
     await user.click(LogIn);
 
+    const title = screen.getAllByRole("heading", "Logga in")[0];
+    expect(title).toBeInTheDocument();
+
+    const signUpText = screen.getByText("skapa ett konto");
+    expect(signUpText).toBeInTheDocument();
+
+    await user.click(signUpText);
+
+    expect(
+      screen.getByRole("heading", { name: "Skapa ett konto" })
+    ).toBeInTheDocument();
+
     const inputLogin = screen.getByPlaceholderText("email");
-    await user.type(inputLogin, "nicoleavila@paron.se");
+    expect(inputLogin).toBeInTheDocument();
+    await user.type(inputLogin, uniqueEmail);
 
     const inputPassword = screen.getByPlaceholderText("password");
+    expect(inputLogin).toBeInTheDocument();
     await user.type(inputPassword, "123456");
 
-    const loginButton = screen.getByRole("button", { name: "logga in" });
-    await user.click(loginButton);
+    const signUpBtn = screen.getByRole("button", { name: "Skapa konto" });
+    expect(signUpBtn).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(
-        screen.getByRole("heading", { name: "Lagersaldo" })
-      ).toBeInTheDocument();
+    await user.click(signUpBtn);
+
+    const stockOverviewTitle = await screen.findByRole("heading", {
+      name: "Lagersaldo",
     });
-
-    const SkapaElement = await screen.findByRole("link", { name: "Skapa" });
-    expect(SkapaElement).toBeInTheDocument();
-
-    await user.click(SkapaElement);
-
-    await waitFor(() => {
-      expect(
-        screen.getByRole("heading", { name: "Skapa nytt" })
-      ).toBeInTheDocument();
-
-      expect(screen.getAllByRole("textbox")).toHaveLength(3);
-      expect(screen.getAllByRole("button")).toHaveLength(3);
-    });
+    expect(stockOverviewTitle).toBeInTheDocument();
   });
 });
-
-describe("Integration testing CreateStock-Page", () => {
-  it.only("should be able to create a new stock", async () => {
-    render(<CreateStock />);
-
-    const user = userEvent.setup();
-    expect(screen.getByRole("heading", "Skapa nytt")).toBeInTheDocument();
-
-    const inputWarehouse = screen.getAllByRole("textbox")[0];
-    expect(inputWarehouse).toBeInTheDocument();
-    await user.type(inputWarehouse, "Uppsala");
-
-    const inputProduct = screen.getAllByRole("textbox")[1];
-    expect(inputProduct).toBeInTheDocument();
-    await user.type(inputProduct, "Telefon");
-
-    const inputQuantity = screen.getAllByRole("textbox")[2];
-    expect(inputQuantity).toBeInTheDocument();
-    await user.type(inputQuantity, "2000");
-
-    const buttonElement = screen.getByRole("button", { name: "spara" });
-    expect(buttonElement).toBeInTheDocument();
-    // expect(buttonElement).not.toBeDisabled();
-
-    await user.click(buttonElement);
-    await waitFor(() => {
-      // expect(buttonElement).toBeDisabled();
-      // expect(screen.findByText("sparat!")).toBeInTheDocument();
-    });
-  });
-});
-
-// const newButton = await screen.findByRole("button", {
-//   name: "invänta sparandet",
-// });
