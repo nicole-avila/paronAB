@@ -14,12 +14,9 @@ export default function CreateStockData() {
   function addMoreProduct(e) {
     e.preventDefault();
     setProducts([...products, { productName: "", quantity: "" }]);
-    console.log(products);
   }
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
+  useEffect(() => {}, [products]);
 
   async function handleForm(e) {
     e.preventDefault();

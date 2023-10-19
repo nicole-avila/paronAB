@@ -22,7 +22,7 @@ export default function AuthSignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
-        navigate("/paronAb/home");
+        navigate("/paronAB/");
       })
       .catch((error) => {
         console.log(error);
@@ -37,7 +37,7 @@ export default function AuthSignUp() {
             <h1>Skapa ett konto</h1>
           </div>
 
-          <form onSubmit={handleSignUp} className="auth__form">
+          <form className="auth__form">
             <input
               type="email"
               placeholder="email"
@@ -55,7 +55,9 @@ export default function AuthSignUp() {
               }}
             />
             <p className="auth__password-text">{passwordError}</p>
-            <button className="auth__signup-btn">Skapa konto</button>
+            <button onClick={handleSignUp} className="auth__signup-btn">
+              Skapa konto
+            </button>
           </form>
           <button
             onClick={() => setViewComponent("login")}
